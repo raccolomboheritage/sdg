@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300&display=swap" rel="stylesheet">
+    <title>SDG Goals</title>
+    <style>
+        body {
+            font-family:  'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            background-image: url(img/background.jpg);
+            background-size: cover; /* Set the initial background size */
+            background-repeat: no-repeat;
+            background-position: center;
+
+        }
+
+        #circle-container {
+            position: relative;
+            width: 80vw; /* Use viewport width for better responsiveness */
+            max-width: 500px; /* Set a maximum width */
+            height: 80vw; /* Use viewport width for better responsiveness */
+            max-height: 500px; /* Set a maximum height */
+        }
+        /* Add this to your existing styles */
+/* Add this to your existing styles */
+        .logo {
+            position: absolute;
+            /* Adjust the size as needed */
+            top: -10px; /* Adjust the top position as needed */
+        }
+
+        .logo-left {
+            max-height: 120px;
+            max-width: 120px;
+            top: -50px;
+            left: 20px; /* Adjust the left position for the left logo */   
+        }
+
+        .logo-right {
+            right: 20px; /* Adjust the right position for the right logo */
+            top: -10px;
+            max-width: 250px;
+        }
+
+
+        .big-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw; /* Use viewport width for better responsiveness */
+            height: 60vw; /* Use viewport width for better responsiveness */
+            max-width: 300px; /* Set a maximum width */
+            max-height: 300px; /* Set a maximum height */
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #141313;
+            font-size: 10px; /* Adjust font size for mobile */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Add white shadow */
+        }
+        .big-circle img {
+            max-width: 70%;
+            max-height: 70%;
+            border-radius: 0%;
+            z-index: 2
+        }
+        .big-circle-img2 {
+            border-radius: 50%;
+            opacity:0.9;
+            z-index: 2;
+        }
+        /* Add animation keyframes for sliding effect */
+        @keyframes descend {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }  
+
+        .small-circle {
+            position: absolute;
+            width: 15vw; /* Use viewport width for better responsiveness */
+            height: 15vw; /* Use viewport width for better responsiveness */
+            max-width: 60px; /* Set a maximum width */
+            max-height: 60px; /* Set a maximum height */
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.4s ease-in-out; /* Add a smooth transition effect */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add white shadow */
+            /* Add animation properties to the small circle */
+            animation: descend 1s ease-in-out;
+            z-index: 3;
+        } 
+       
+        .small-circle img {
+            max-width: 70%;
+            max-height: 70%;
+            border-radius: 0%;
+        }
+
+        .small-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw; /* Use viewport width for better responsiveness */
+            height: 70vw; /* Use viewport width for better responsiveness */
+            max-width: 50px; /* Set a maximum width */
+            max-height: 50px; /* Set a maximum height */
+            background-color: transparent;
+            border-radius: 50%;
+        }
+
+        /* Add hover effect */
+        .small-circle:hover {
+            transform: scale(1.5); /* Increase the size on hover */
+        }
+        
+        .sdg-content {
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            padding-top: 10px;;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 290px; /* Set a maximum width */
+            max-height: 290px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .sdg-content2 {
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            padding-top: 40px;;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 150px; /* Set a maximum width */
+            max-height: 150px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+        }
+        .sdg-content3 {
+            font-size: 10px;
+            text-align: center;
+            padding-top: 70px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 250px; /* Set a maximum width */
+            max-height: 250px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .sdg-topic {
+            font-size: 30px;
+            text-align: center;
+            padding-bottom: 150px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 250px; /* Set a maximum width */
+            max-height: 250px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sdg-topic2 {
+            font-size: 22px;
+            text-align: center;
+            padding-bottom: 150px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 250px; /* Set a maximum width */
+            max-height: 250px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sdg-topic3 {
+            font-size: 18px;
+            text-align: center;
+            padding-bottom: 150px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; /* Use viewport width for better responsiveness */
+            height: 50vw; /* Use viewport width for better responsiveness */
+            max-width: 250px; /* Set a maximum width */
+            max-height: 250px; /* Set a maximum height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        a{
+            z-index: 3;
+        }
+        #big-letter {
+                font-size: 48px;
+                font-weight:bold;
+                text-align: right;
+            }
+
+        /* Media Queries */
+        @media (min-width: 320px) and (max-width: 480px) {
+            /* For smaller devices such as mobile phones in portrait mode */
+            body{
+               margin-left: 12px; 
+            }
+            .logo {
+                max-width: 100px; /* Adjust the size as needed */
+            }
+            .logo-left {
+                left: 10px; /* Adjust the left position for the left logo */
+                top: 15px;
+                max-width: 80px;
+                max-height: 80px;
+
+            }
+
+            .logo-right {
+                right: 10px; /* Adjust the right position for the right logo */
+                top: -15px;
+                max-width: 140px;
+                max-height: 140px;
+            }
+
+            #circle-container {
+                width: 80vw;
+                max-width: none;
+                height: 80vw;
+                max-height: none;
+            }
+            .big-circle {
+                font-size: 20px;
+            }
+            .big-circle-img2 {
+                max-height: 100px;
+                max-width: 100px;
+            }
+            .small-circle {
+                width: 20vw;
+                height: 20vw;
+                max-width: 40px;
+                max-height: 40px;
+            }
+            #big-letter {
+                font-size: 48px;
+                font-weight:bold;
+                text-align: right;
+            }
+            .sdg-content {
+                max-width: 150;
+                max-height: 100;
+            }
+        
+            .sdg-content2 {
+                font-size: 10px;
+                padding-top: 50px;
+                width: 150px;
+                height: 50px;
+            
+            }
+            .sdg-content3 {
+                font-size: 9px;
+                padding-top: 50px;
+            
+            }
+            .sdg-topic {
+                font-size: 16px;
+                padding-bottom: 120px;
+                
+               
+            }
+            .sdg-topic2 {
+                font-size: 14px;
+                padding-bottom: 120px;
+                
+            }
+            .sdg-topic3 {
+                font-size: 12px;
+                padding-bottom: 120px;
+                padding-top:20px;
+            }
+            a{
+                z-index: 3;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 767px) {
+            /* For devices such as smaller tablets */
+            body{
+               margin-left: 10px; 
+            }
+            .logo-left {
+            left: 20px; /* Adjust the left position for the left logo */
+            padding-top: 30px;
+            }
+            #circle-container {
+                width: 70vw;
+                max-width: none;
+                height: 70vw;
+                max-height: none;
+            }
+            .big-circle {
+                font-size: 12px;
+            }
+            .small-circle {
+                width: 18vw;
+                height: 18vw;
+                max-width: 50px;
+                max-height: 50px;
+            }
+            .sdg-content {
+            font-size: 16px;
+            
+            }
+            .sdg-topic {
+            font-size: 30px;
+            }
+           
+        }
+
+        @media (min-width: 768px) {
+            /* For larger devices such as tablets and desktops */
+            .big-circle {
+                font-size: 24px;
+            }
+            .logo-left {
+            left: 20px; /* Adjust the left position for the left logo */
+            padding-top: 90px;
+            }
+            .small-circle {
+                width: 15vw;
+                height: 15vw;
+                max-width: 60px;
+                max-height: 60px;
+            }
+            #big-letter {
+                font-size: 48px;
+                font-weight:bold;
+                text-align: center;
+            }
+        }
+        th, td {
+            border: none; /* Remove borders from table cells */
+            padding: none; /* Add padding for cell content */
+            text-align: left;
+        }
+        
+    </style>
+</head>
+<body>
+<img src="img/ri_theme.png" alt="Logo 1" class="logo logo-left">
+<img src="img/rac_logo.png" alt="Logo 2" class="logo logo-right">
+<div id="circle-container">
+    <!-- Creating 17 small circles -->
+    <div class="big-circle">
+        <img src="img/big-circle.png">
+    </div>
+</div>
+
+<script>
+    const circleContainer = document.getElementById('circle-container');
+    const bigCircle = document.querySelector('.big-circle');
+    const totalSmallCircles = 17;
+
+    const youtubeLink = 'https://rb.gy/oi1bj0';
+    const sdgData = [
+        {text: "<div class=sdg-content><img src='img/inside1.png'></div><div class=sdg-content2><a href='https://youtu.be/7EtjJ7av3VI?si=TMRP7ATGfm_bkYIt' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/1.png"
+        },
+        { text: "<div class=sdg-content><img src='img/inside2.png'></div><div class=sdg-content2><a href='https://youtu.be/6au2B0OybZ4?si=Bn0ecGpD2WZI5xz3' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/2.png"},
+        { text: "<div class=sdg-content><img src='img/inside3.png'></div><div class=sdg-content2><a href='https://youtu.be/7ns9iZqrMFU?si=nixEZdzxicGLLF3y' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/3.png" },
+        { text: "<div class=sdg-content><img src='img/inside4.png'></div><div class=sdg-content2><a href='https://youtu.be/4-yeChl8CVM?si=m0KgFcRJYGjDobtJ' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/4.png" },
+        { text: "<div class=sdg-content><img src='img/inside5.png'></div><div class=sdg-content2><a href='https://youtu.be/oY1TzsVM6U8?si=9pa0MX6sElyGBooQ' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/5.png" },
+        { text: "<div class=sdg-content><img src='img/inside6.png'></div><div class=sdg-content2><a href='https://youtu.be/uvrFWjMMbIs?si=hyn6cuX0aXLCp_io' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/6.png" },
+        { text: "<div class=sdg-content><img src='img/inside7.png'></div><div class=sdg-content2><a href='https://youtu.be/g6Ne6lNVUsk?si=_oiMfTAhJ9VijaAf' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/7.png"},
+        { text: "<div class=sdg-content><img src='img/inside8.png'></div><div class=sdg-content2><a href='https://youtu.be/mhyMb3TQVvs?si=3trwPkP3pRJoOVvN' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/8.png" },
+        { text: "<div class=sdg-content><img src='img/inside9.png'></div><div class=sdg-content2><a href='https://youtu.be/YODUERb0www?si=tySq_7PCzA2X7M9E' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/9.png"},
+        { text: "<div class=sdg-content><img src='img/inside10.png'></div><div class=sdg-content2><a href='https://youtu.be/sh7pROSN-Is?si=cpnXq-WDKTv3akNg' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/10.png" },
+        { text: "<div class=sdg-content><img src='img/inside11.png'></div><div class=sdg-content2><a href='https://youtu.be/65_MMPMNs2Y?si=vBkxYQhG5YmmmG5_' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/11.png"},
+        { text: "<div class=sdg-content><img src='img/inside12.png'></div><div class=sdg-content2><a href='https://youtu.be/bSUpbUCD4to?si=5xwxlu5wN3viMGqd' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:20px;></div></a></div>",
+        image: "img/12.png" },
+        { text: "<div class=sdg-content><img src='img/inside13.png'></div><div class=sdg-content2><a href='https://youtu.be/5SMo1_pNRW4?si=PHSsGx1w_XuFANID' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/13.png" },
+        { text: "<div class=sdg-content><img src='img/inside14.png'></div><div class=sdg-content2><a href='https://youtu.be/eSOAUL55d-Q?si=924zP7yGof4FFn6m' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/14.png"},
+        { text: "<div class=sdg-content><img src='img/inside15.png'></div><div class=sdg-content2><a href='https://youtu.be/sN38ot1q1kk?si=WUa1XagkednwtJoa' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/15.png"},
+        { text: "<div class=sdg-content><img src='img/inside16.png'></div><div class=sdg-content2><a href='https://youtu.be/E0_gEIRYlqA?si=pruA5xTctI_06xwn' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:40px;></div></a></div>",
+        image: "img/16.png"},
+        { text: "<div class=sdg-content><img src='img/inside17.png'></div><div class=sdg-content2><a href='https://youtu.be/ljagqV0larY?si=peH-a2XYmJKVuK7-' target='_blank'><div class=big-circle-img2><img src='img/play-button.png' style=padding-bottom:60px;></div></a></div>",
+        image: "img/17.png" }
+    ];
+    
+    const delay = 100;
+
+    async function animateCircles() {
+        for (let i = 0; i < totalSmallCircles; i++) {
+            await new Promise(resolve => setTimeout(resolve, delay));
+
+            const angle = (i / totalSmallCircles) * 2 * Math.PI;
+            const radius = (circleContainer.clientWidth / 2) + 10; // Adjusted the radius
+            const x = circleContainer.clientWidth / 2 + radius * Math.cos(angle) - 30;
+            const y = circleContainer.clientHeight / 2 + radius * Math.sin(angle) - 30;
+
+            const smallCircle = document.createElement('div');
+            smallCircle.className = 'small-circle';
+            smallCircle.style.left = x + 'px';
+            smallCircle.style.top = y + 'px';
+
+            smallCircle.setAttribute('data-sdg', i);
+
+            const sdgImage = document.createElement('img');
+            sdgImage.src = sdgData[i].image;
+            smallCircle.appendChild(sdgImage);
+
+            smallCircle.addEventListener('click', function () {
+                bigCircle.innerHTML = `<div class="sdg-content">${sdgData[i].text}</div>`;
+            });
+
+            // Add specific animation class based on the index
+            smallCircle.classList.add(`slideIn${i + 1}`);
+
+            circleContainer.appendChild(smallCircle);
+        }
+    }
+
+    window.onload = function () {
+        // Apply adjustment only when the screen width is smaller than 768px
+        if (window.innerWidth < 768) {
+            bigCircle.style.top = `${circleContainer.clientHeight / 2 - 10}px`;
+            bigCircle.style.left = `${circleContainer.clientWidth / 2 - 10}px`;
+        }
+        else{
+            bigCircle.style.top = `${circleContainer.clientHeight / 2}px`;
+            bigCircle.style.left = `${circleContainer.clientWidth / 2}px`;
+        }
+        animateCircles();
+    };
+</script>
+</body>
+</html>
